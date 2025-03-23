@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static utils.SingletonDriver.getDriver;
 
-public class DashboardPage {
+public class DashboardPage extends BasePage {
 
     @FindBy(css = "li.oxd-userdropdown")
     private WebElement userDropdown;

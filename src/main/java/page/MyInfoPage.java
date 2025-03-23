@@ -3,16 +3,15 @@ package page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.time.Duration;
+import java.util.logging.Level;
 
 import static utils.SingletonDriver.getDriver;
 import static utils.TextUtils.clearAndEnterTextInput;
+import static utils.ExplicitWaitUtils.waitForElementToBeClickable;
 
-public class MyInfoPage {
+public class MyInfoPage extends BasePage {
 
     @FindBy(name = "firstName")
     private WebElement firstNameInput;
@@ -46,39 +45,44 @@ public class MyInfoPage {
     }
 
     public MyInfoPage enterFirstNameInput(String firstName) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(firstNameInput));
-        clearAndEnterTextInput(firstNameInput, firstName);
+        clearAndEnterTextInput(waitForElementToBeClickable(firstNameInput), firstName);
+        logger.log(Level.INFO, "Cleared first name input field and entered first name: {0}", firstName);
         return this;
     }
 
     public MyInfoPage enterMiddleNameInput(String middleName) {
         clearAndEnterTextInput(middleNameInput, middleName);
+        logger.log(Level.INFO, "Cleared middle name input field and entered middle name: {0}", middleName);
         return this;
     }
 
     public MyInfoPage enterLastNameInput(String lastName) {
         clearAndEnterTextInput(lastNameInput, lastName);
+        logger.log(Level.INFO, "Cleared last name input field and entered last name: {0}", lastName);
         return this;
     }
 
     public MyInfoPage clickFirstCheckBox() {
         firstCheckBox.click();
+        logger.log(Level.INFO, "Clicked first check box");
         return this;
     }
 
     public MyInfoPage clickGenderRadioButton(int choiceNumber) {
         genderRadioButtons.get(choiceNumber).click();
+        logger.log(Level.INFO, "Clicked gender radio button #{0}", choiceNumber);
         return this;
     }
 
     public MyInfoPage clickSavePersonalDetailsButton() {
         personalDetailsSaveButton.click();
+        logger.log(Level.INFO, "Clicked Personal Details save button");
         return this;
     }
 
     public MyInfoPage selectNationalityDropdownOption(String nationality) {
         nationalityDropdownSelect.click();
+        logger.log(Level.INFO, "Clicked nationality dropdown menu to show available options");
         for (int i = 0; i < dropdownSelectOptions.size() - 1; i++) {
             WebElement nationalityDropdownOption = dropdownSelectOptions.get(i);
             String nationalityOptionText = nationalityDropdownOption.getText().toLowerCase();
@@ -87,6 +91,7 @@ public class MyInfoPage {
                 break;
             }
         }
+        logger.log(Level.INFO, "Searched for '{0}' option in the nationality dropdown menu and clicked it", nationality);
         return this;
     }
 

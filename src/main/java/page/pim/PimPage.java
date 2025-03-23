@@ -1,13 +1,18 @@
 package page.pim;
 
+
+import page.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.logging.Level;
+
+import static utils.ExplicitWaitUtils.waitForTextToBePresentInElement;
 import static utils.SingletonDriver.getDriver;
 import static utils.TextUtils.clearAndEnterTextInput;
 
-public class PimPage {
+public class PimPage extends BasePage {
 
     @FindBy(css = "div[class='orangehrm-header-container'] button")
     private WebElement addEmployeeButton;
@@ -33,21 +38,28 @@ public class PimPage {
 
     public PimPage goToAddEmployeePage() {
         addEmployeeButton.click();
+        logger.log(Level.INFO, "Clicked the '+ Add' button");
         return this;
     }
 
     public PimPage clickSearchButton() {
         searchButton.click();
+        logger.log(Level.INFO, "Clicked the search button");
         return this;
     }
 
     public PimPage enterEmployeeIdInput(String employeeId) {
         clearAndEnterTextInput(employeeIdInput, employeeId);
+        logger.log(Level.INFO, "Cleared employee Id input field and entered employee Id: {0}", employeeId);
         return this;
     }
 
-    public String getFirstSearchResultEmployeeId() {
-        return firstSearchResultEmployeeIdCell.getText();
+    public PimPage searchByEmployeeId(String employeeId) {
+        enterEmployeeIdInput(employeeId);
+        clickSearchButton();
+        waitForTextToBePresentInElement(firstSearchResultEmployeeIdCell, employeeId);
+        logger.log(Level.INFO, "Waited for the first search result to have Id value of: {0}", employeeId);
+        return this;
     }
 
     public String getFirstSearchResultFirstName() {

@@ -4,9 +4,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.logging.Level;
+
 import static utils.SingletonDriver.getDriver;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     @FindBy(name = "username")
     private WebElement usernameInput;
@@ -26,16 +28,19 @@ public class LoginPage {
 
     public LoginPage enterUsernameInput(String username) {
         usernameInput.sendKeys(username);
+        logger.log(Level.INFO, "Entered username: {0}", username);
         return this;
     }
 
     public LoginPage enterPasswordInput(String password) {
         passwordInput.sendKeys(password);
+        logger.log(Level.INFO, "Entered password: {0}", password);
         return this;
     }
 
     public LoginPage clickLoginButton() {
         loginButton.click();
+        logger.log(Level.INFO, "Clicked the login button");
         return this;
     }
 

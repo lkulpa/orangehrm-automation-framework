@@ -1,19 +1,17 @@
 package page.pim;
 
-import org.openqa.selenium.WebDriver;
+import page.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.Duration;
+import java.util.logging.Level;
 
 import static utils.SingletonDriver.getDriver;
 import static utils.TextUtils.clearAndEnterTextInput;
+import static utils.ExplicitWaitUtils.waitForElementToBeVisible;
 
-public class AddEmployeePage {
+public class AddEmployeePage extends BasePage {
 
     @FindBy(name = "firstName")
     private WebElement firstNameInput;
@@ -39,21 +37,25 @@ public class AddEmployeePage {
 
     public AddEmployeePage enterFirstNameInput(String firstName) {
         clearAndEnterTextInput(firstNameInput, firstName);
+        logger.log(Level.INFO, "Cleared first name input field and entered first name: {0}", firstName);
         return this;
     }
 
     public AddEmployeePage enterMiddleNameInput(String middleName) {
         clearAndEnterTextInput(middleNameInput, middleName);
+        logger.log(Level.INFO, "Cleared middle name input field and entered middle name: {0}", middleName);
         return this;
     }
 
     public AddEmployeePage enterLastNameInput(String lastName) {
         clearAndEnterTextInput(lastNameInput, lastName);
+        logger.log(Level.INFO, "Cleared last name input field and entered last name: {0}", lastName);
         return this;
     }
 
     public AddEmployeePage clickSaveButton() {
         saveButton.click();
+        logger.log(Level.INFO, "Clicked the save button");
         return this;
     }
 
@@ -61,8 +63,9 @@ public class AddEmployeePage {
         return employeeIdInput.getDomProperty("value");
     }
 
-    public void waitForSuccessPopup() {
-        Wait<WebDriver> wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(toastSuccessMessage));
+    public AddEmployeePage waitForSuccessPopup() {
+        waitForElementToBeVisible(toastSuccessMessage);
+        logger.log(Level.INFO, "Waited for success toast message to pop up");
+        return this;
     }
 }

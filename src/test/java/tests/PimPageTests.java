@@ -47,16 +47,12 @@ public class PimPageTests extends BaseTestConfig {
                 .navigateToPimPage();
 
         pimPage
-                .enterEmployeeIdInput(employeeId)
-                .clickSearchButton()
-                .clickSearchButton();
+                .searchByEmployeeId(employeeId);
 
-        String searchResultEmployeeId = pimPage.getFirstSearchResultEmployeeId();
         String searchResultFirstName = pimPage.getFirstSearchResultFirstName();
         String searchResultMiddleName = pimPage.getFirstSearchResultMiddleName();
         String searchResultLastName = pimPage.getFirstSearchResultLastName();
 
-        assertEquals(searchResultEmployeeId, employeeId, "Employee Id does not match the search result");
         assertEquals(searchResultFirstName, firstName, "First name does not match the search result");
         assertEquals(searchResultMiddleName, middleName, "Middle name does not match the search result");
         assertEquals(searchResultLastName, lastName, "Last name does not match the search result");
