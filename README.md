@@ -34,6 +34,6 @@ Each test class should contain tests specific to one of the website's pages, and
 
 New tests should be added in relevant test classes in `orangehrm-automation-framework\src\test\java\tests` directory.
 
-Test methods should be descriptive and include "Test" at the end of its name, e.g. "loginTest".
+Test methods should be descriptive and include "Test" at the end of its name, e.g. "loginTest". The _@Test_ annotation must be included above each test method.
 
 Page Object classes should be added in `orangehrm-automation-framework\src\main\java\page` named following the patttern: _PageNamePage_. E.g. "AddEmployeePage".
