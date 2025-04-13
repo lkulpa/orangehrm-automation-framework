@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import page.LoginPage;
 import page.MyInfoPage;
 import page.NavigationMenuPage;
@@ -28,6 +30,7 @@ public class MyInfoPageTests extends BaseTestConfig {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
     public void editPersonalDetailsTest() {
         myInfoPage.enterFirstNameInput("Janna2")
                 .enterMiddleNameInput("Janina2")
