@@ -1,5 +1,6 @@
 package page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -44,42 +45,49 @@ public class MyInfoPage extends BasePage {
         PageFactory.initElements(getDriver(), this);
     }
 
+    @Step("user enters first name: {firstName}")
     public MyInfoPage enterFirstNameInput(String firstName) {
         clearAndEnterTextInput(waitForElementToBeClickable(firstNameInput), firstName);
         logger.log(Level.INFO, "Cleared first name input field and entered first name: {0}", firstName);
         return this;
     }
 
+    @Step("user enters middle name: {middleName}")
     public MyInfoPage enterMiddleNameInput(String middleName) {
         clearAndEnterTextInput(middleNameInput, middleName);
         logger.log(Level.INFO, "Cleared middle name input field and entered middle name: {0}", middleName);
         return this;
     }
 
+    @Step("user enters last name: {lastName}")
     public MyInfoPage enterLastNameInput(String lastName) {
         clearAndEnterTextInput(lastNameInput, lastName);
         logger.log(Level.INFO, "Cleared last name input field and entered last name: {0}", lastName);
         return this;
     }
 
+    @Step("user clicks first check box")
     public MyInfoPage clickFirstCheckBox() {
         firstCheckBox.click();
         logger.log(Level.INFO, "Clicked first check box");
         return this;
     }
 
+    @Step("user clicks gender radio button #{choiceNumber}")
     public MyInfoPage clickGenderRadioButton(int choiceNumber) {
         genderRadioButtons.get(choiceNumber).click();
         logger.log(Level.INFO, "Clicked gender radio button #{0}", choiceNumber);
         return this;
     }
 
+    @Step("user click save button on the Personal Details form")
     public MyInfoPage clickSavePersonalDetailsButton() {
         personalDetailsSaveButton.click();
         logger.log(Level.INFO, "Clicked Personal Details save button");
         return this;
     }
 
+    @Step("user selects nationality from the dropdown menu: {nationality}")
     public MyInfoPage selectNationalityDropdownOption(String nationality) {
         nationalityDropdownSelect.click();
         logger.log(Level.INFO, "Clicked nationality dropdown menu to show available options");
