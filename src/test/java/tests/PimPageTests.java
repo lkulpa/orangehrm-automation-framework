@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import page.LoginPage;
 import page.pim.PimPage;
 import page.NavigationMenuPage;
@@ -28,6 +31,8 @@ public class PimPageTests extends BaseTestConfig {
     }
 
     @Test
+    @Description("This test attempts to add a new employee to the database. Fails if the newly added employee cannot be found in the database.")
+    @Severity(SeverityLevel.NORMAL)
     public void addEmployeeTest() {
         pimPage.goToAddEmployeePage();
 

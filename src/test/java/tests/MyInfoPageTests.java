@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import page.LoginPage;
@@ -30,6 +31,7 @@ public class MyInfoPageTests extends BaseTestConfig {
     }
 
     @Test
+    @Description("This tests attempts to edit employee's Personal Details and save the changes. Fails if a success popup does not appear after clicking the Save button.")
     @Severity(SeverityLevel.NORMAL)
     public void editPersonalDetailsTest() {
         myInfoPage.enterFirstNameInput("Janna2")
