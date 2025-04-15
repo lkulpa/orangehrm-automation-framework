@@ -10,7 +10,7 @@ This is my first Java test automation project, using Selenium, Maven and TestNG.
 
 * Page Object pattern
 * WebDriver Singleton pattern
-* Utility classes.
+* Utility classes
 
 ## Getting Started
 
