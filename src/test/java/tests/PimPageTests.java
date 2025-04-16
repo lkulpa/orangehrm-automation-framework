@@ -20,14 +20,18 @@ public class PimPageTests extends BaseTestConfig {
     private NavigationMenuPage navigationMenuPage;
 
     @BeforeMethod
+    @Description("This method logs in with a valid account and navigates to PIM Page in preparation for PIM Page tests.")
     public void pimPageTestsSetup() {
         loginPage = new LoginPage();
         navigationMenuPage = new NavigationMenuPage();
         pimPage = new PimPage();
         addEmployeePage = new AddEmployeePage();
 
-        loginPage.login("Admin", "admin123");
-        navigationMenuPage.navigateToPimPage();
+        loginPage
+                .login("Admin", "admin123");
+
+        navigationMenuPage
+                .navigateToPimPage();
     }
 
     @Test

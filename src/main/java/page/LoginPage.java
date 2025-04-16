@@ -48,7 +48,6 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("user enters username/password combination: {username}/{password}, and click the login button")
     public LoginPage login(String username, String password) {
         enterUsernameInput(username);
         enterPasswordInput(password);
@@ -56,6 +55,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("retrieving error message from a Login Error")
     public String getLoginErrorMessageText() {
         return loginErrorMessage.getText();
     }

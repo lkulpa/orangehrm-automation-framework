@@ -18,6 +18,7 @@ public class MyInfoPageTests extends BaseTestConfig {
     private NavigationMenuPage navigationMenuPage;
 
     @BeforeMethod
+    @Description("This method logs in with a valid account and navigates to My Info Page in preparation for My Info Page tests.")
     public void myInfoPageTestsSetup() {
         loginPage = new LoginPage();
         myInfoPage = new MyInfoPage();

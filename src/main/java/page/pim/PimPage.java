@@ -1,6 +1,7 @@
 package page.pim;
 
 
+import io.qameta.allure.Step;
 import page.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,24 +37,28 @@ public class PimPage extends BasePage {
         PageFactory.initElements(getDriver(), this);
     }
 
+    @Step("user clicked the Add Employee button")
     public PimPage goToAddEmployeePage() {
         addEmployeeButton.click();
         logger.log(Level.INFO, "Clicked the '+ Add' button");
         return this;
     }
 
+    @Step("user clicked the search button")
     public PimPage clickSearchButton() {
         searchButton.click();
         logger.log(Level.INFO, "Clicked the search button");
         return this;
     }
 
+    @Step("user entered employee id in the search form: {employeeId}")
     public PimPage enterEmployeeIdInput(String employeeId) {
         clearAndEnterTextInput(employeeIdInput, employeeId);
         logger.log(Level.INFO, "Cleared employee Id input field and entered employee Id: {0}", employeeId);
         return this;
     }
 
+    @Step("user searches the database by employee id: {employeeId}")
     public PimPage searchByEmployeeId(String employeeId) {
         enterEmployeeIdInput(employeeId);
         clickSearchButton();
@@ -62,14 +67,17 @@ public class PimPage extends BasePage {
         return this;
     }
 
+    @Step("retrieving first search result's first name value")
     public String getFirstSearchResultFirstName() {
         return firstSearchResultFirstAndMiddleNameCell.getText().split("\\s")[0];
     }
 
+    @Step("retrieving first search result's middle name value")
     public String getFirstSearchResultMiddleName() {
         return firstSearchResultFirstAndMiddleNameCell.getText().split("\\s")[1];
     }
 
+    @Step("retrieving first search result's last name value")
     public String getFirstSearchResultLastName() {
         return firstSearchResultLastNameCell.getText();
     }

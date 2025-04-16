@@ -1,5 +1,6 @@
 package page.pim;
 
+import io.qameta.allure.Step;
 import page.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,37 +36,43 @@ public class AddEmployeePage extends BasePage {
         PageFactory.initElements(getDriver(), this);
     }
 
+    @Step("user enter first name: {firstName}")
     public AddEmployeePage enterFirstNameInput(String firstName) {
         clearAndEnterTextInput(firstNameInput, firstName);
         logger.log(Level.INFO, "Cleared first name input field and entered first name: {0}", firstName);
         return this;
     }
 
+    @Step("user enters middle name: {middleName}")
     public AddEmployeePage enterMiddleNameInput(String middleName) {
         clearAndEnterTextInput(middleNameInput, middleName);
         logger.log(Level.INFO, "Cleared middle name input field and entered middle name: {0}", middleName);
         return this;
     }
 
+    @Step("user enters last name: {lastName}")
     public AddEmployeePage enterLastNameInput(String lastName) {
         clearAndEnterTextInput(lastNameInput, lastName);
         logger.log(Level.INFO, "Cleared last name input field and entered last name: {0}", lastName);
         return this;
     }
 
+    @Step("user click the Save button")
     public AddEmployeePage clickSaveButton() {
         saveButton.click();
         logger.log(Level.INFO, "Clicked the save button");
         return this;
     }
 
+    @Step("retrieving auto-generated employee id value")
     public String getEmployeeIdValue() {
         return employeeIdInput.getDomProperty("value");
     }
 
+    @Step("waiting for success toast message popup")
     public AddEmployeePage waitForSuccessPopup() {
         waitForElementToBeVisible(toastSuccessMessage);
-        logger.log(Level.INFO, "Waited for success toast message to pop up");
+        logger.log(Level.INFO, "Waited for success toast message popup");
         return this;
     }
 }

@@ -103,6 +103,7 @@ public class MyInfoPage extends BasePage {
         return this;
     }
 
+    @Step("retrieving title text from a Toast popup")
     public String getToastMessageTitleText() {
         return toastMessageTitle.getText();
     }
