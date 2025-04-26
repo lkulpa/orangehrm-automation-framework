@@ -1,8 +1,11 @@
 package tests;
 
-import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
+import io.qameta.allure.testng.Tag;
+import io.qameta.allure.testng.Tags;
+import io.qameta.allure.Description;
 import io.qameta.allure.SeverityLevel;
+
 import page.LoginPage;
 import page.MyInfoPage;
 import page.NavigationMenuPage;
@@ -32,6 +35,7 @@ public class MyInfoPageTests extends BaseTestConfig {
     }
 
     @Test
+    @Tags({@Tag("regression"), @Tag("functional"), @Tag("essentials")})
     @Description("This tests attempts to edit employee's Personal Details and save the changes. Fails if a success popup does not appear after clicking the Save button.")
     @Severity(SeverityLevel.NORMAL)
     public void editPersonalDetailsTest() {
