@@ -1,6 +1,7 @@
 package tests;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import utils.PropertiesReader;
 
@@ -12,13 +13,15 @@ import static utils.SingletonDriver.getDriver;
 
 public class BaseTestConfig {
 
+    @BeforeClass
+    public void beforeClass() {
+        PropertiesReader.read(Path.of("src/main/resources/configuration.properties"));
+    }
+
     @BeforeMethod
     public void beforeMethod() {
-        PropertiesReader.read(Path.of("src/main/resources/configuration.properties"));
-        String homeUrl = PropertiesReader.get("appUrl");
-
         getDriver().manage().window().maximize();
-        getDriver().navigate().to(homeUrl);
+        getDriver().navigate().to(PropertiesReader.get("appUrl"));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 

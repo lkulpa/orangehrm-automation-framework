@@ -32,12 +32,9 @@ public class LoginPageTests extends BaseTestConfig {
     @Severity(SeverityLevel.CRITICAL)
     public void verifyLoginTest() {
 
-        String username = PropertiesReader.get("validUsername");
-        String password = PropertiesReader.get("validPassword");
-
         loginPage
-                .enterUsernameInput(username)
-                .enterPasswordInput(password)
+                .enterUsernameInput(PropertiesReader.get("validUsername"))
+                .enterPasswordInput(PropertiesReader.get("validPassword"))
                 .clickLoginButton();
 
         assertTrue(dashboardPage
