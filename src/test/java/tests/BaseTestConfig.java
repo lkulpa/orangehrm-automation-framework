@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -20,7 +21,6 @@ public class BaseTestConfig {
 
     @BeforeMethod
     public void beforeMethod() {
-        getDriver().manage().window().maximize();
         getDriver().navigate().to(PropertiesReader.get("appUrl"));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
