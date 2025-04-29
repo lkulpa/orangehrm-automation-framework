@@ -1,16 +1,15 @@
 package tests;
 
-import org.openqa.selenium.chrome.ChromeOptions;
+import utils.PropertiesReader;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import utils.PropertiesReader;
 
 import java.nio.file.Path;
 import java.time.Duration;
 
-import static utils.SingletonDriver.closeDriver;
 import static utils.SingletonDriver.getDriver;
+import static utils.SingletonDriver.closeDriver;
 
 public class BaseTestConfig {
 
