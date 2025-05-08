@@ -13,6 +13,8 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
 import static org.testng.Assert.*;
+import static utils.DataGenerator.generateLastName;
+import static utils.DataGenerator.generateFirstName;
 
 public class MyInfoPageTests extends BaseTestConfig {
 
@@ -35,13 +37,15 @@ public class MyInfoPageTests extends BaseTestConfig {
     }
 
     @Test
-    @Tags({@Tag("regression"), @Tag("functional"), @Tag("essentials")})
+    @Tags({@Tag("regression"), @Tag("functional"), @Tag("essentials"), @Tag("system")})
     @Description("This tests attempts to edit employee's Personal Details and save the changes. Fails if a success popup does not appear after clicking the Save button.")
     @Severity(SeverityLevel.NORMAL)
     public void editPersonalDetailsTest() {
-        myInfoPage.enterFirstNameInput("Janna2")
-                .enterMiddleNameInput("Janina2")
-                .enterLastNameInput("Kowalska2")
+
+        myInfoPage
+                .enterFirstNameInput(generateFirstName())
+                .enterMiddleNameInput(generateFirstName())
+                .enterLastNameInput(generateLastName())
                 .clickFirstCheckBox()
                 .clickGenderRadioButton(1)
                 .selectNationalityDropdownOption("Polish")

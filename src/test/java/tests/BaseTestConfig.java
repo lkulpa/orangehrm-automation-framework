@@ -15,13 +15,13 @@ public class BaseTestConfig {
 
     @BeforeClass
     public void beforeClass() {
-        PropertiesReader.read(Path.of("src/main/resources/configuration.properties"));
+        PropertiesReader.loadProperties(Path.of("src/main/resources/configuration.properties"));
     }
 
     @BeforeMethod
     public void beforeMethod() {
-        getDriver().navigate().to(PropertiesReader.get("appUrl"));
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        getDriver().navigate().to(PropertiesReader.getProperty("appUrl"));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(PropertiesReader.getProperty("implicitWaitDuration"))));
     }
 
     @AfterMethod

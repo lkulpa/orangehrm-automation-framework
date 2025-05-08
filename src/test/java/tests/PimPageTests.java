@@ -14,6 +14,8 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
 import static org.testng.Assert.*;
+import static utils.DataGenerator.generateLastName;
+import static utils.DataGenerator.generateFirstName;
 
 public class PimPageTests extends BaseTestConfig {
 
@@ -38,15 +40,16 @@ public class PimPageTests extends BaseTestConfig {
     }
 
     @Test
-    @Tags({@Tag("regression"), @Tag("functional"), @Tag("essentials")})
+    @Tags({@Tag("regression"), @Tag("functional"), @Tag("essentials"), @Tag("system")})
     @Description("This test attempts to add a new employee to the database. Fails if the newly added employee cannot be found in the database.")
     @Severity(SeverityLevel.NORMAL)
     public void addEmployeeTest() {
         pimPage.goToAddEmployeePage();
 
-        String firstName = "trzy";
-        String middleName = "cztery";
-        String lastName = "piec";
+        String firstName = generateFirstName();
+        String middleName = generateFirstName();
+        String lastName = generateLastName();
+
         String employeeId = addEmployeePage.getEmployeeIdValue();
 
         addEmployeePage

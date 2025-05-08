@@ -1,8 +1,6 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SingletonDriver {
 
@@ -10,15 +8,8 @@ public class SingletonDriver {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            ChromeOptions options = new ChromeOptions();
-            boolean headlessMode = Boolean.parseBoolean(PropertiesReader.get("headlessMode"));
-            boolean maximizeWindow = Boolean.parseBoolean(PropertiesReader.get("maximizeWindow"));
-
-            if (headlessMode) {
-                options.addArguments("--headless");
-            }
-            driver = new ChromeDriver(options);
-            if (maximizeWindow && !headlessMode) {
+            driver = BrowserPicker.buildWebDriver();
+            if (Boolean.parseBoolean(PropertiesReader.getProperty("maximizeWindow"))) {
                 driver.manage().window().maximize();
             }
         }
