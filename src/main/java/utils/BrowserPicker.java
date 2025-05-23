@@ -14,12 +14,16 @@ public class BrowserPicker {
 
     public static WebDriver buildWebDriver() {
         ArrayList<String> options = new ArrayList<>();
+        String browserType = System.getenv("browserType");
+        if (browserType == null) {
+            browserType = PropertiesReader.getProperty("browserType");
+        }
 
         if (Boolean.parseBoolean(PropertiesReader.getProperty("headlessMode"))) {
             options.add("--headless=new");
         }
 
-        switch (System.getenv("browserType")) {
+        switch (browserType) {
             case "chrome" -> {
                 ChromeOptions optionsObject = new ChromeOptions();
                 optionsObject.addArguments(options);
