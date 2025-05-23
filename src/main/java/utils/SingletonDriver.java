@@ -18,7 +18,9 @@ public class SingletonDriver {
 
     public static void closeDriver() {
         driver.close();
-        driver.quit();
+        if (!PropertiesReader.getProperty("browserType").equals("firefox")) {
+            driver.quit();
+        }
         driver = null;
     }
 }
