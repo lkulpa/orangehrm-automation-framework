@@ -75,7 +75,7 @@ public class MyInfoPage extends BasePage {
 
     @Step("user clicks gender radio button #{choiceNumber}")
     public MyInfoPage clickGenderRadioButton(int choiceNumber) {
-        genderRadioButtons.get(choiceNumber).click();
+        waitForElementToBeClickable(genderRadioButtons.get(choiceNumber)).click();
         logger.log(Level.INFO, "Clicked gender radio button #{0}", choiceNumber);
         return this;
     }
