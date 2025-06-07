@@ -1,12 +1,12 @@
 package tests;
 
+import utils.TestListener;
 import org.testng.ITestResult;
-import org.testng.annotations.Listeners;
 import utils.PropertiesReader;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import utils.TestListener;
 
 import java.nio.file.Path;
 import java.time.Duration;
