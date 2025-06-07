@@ -52,7 +52,7 @@ public class LoginPageTests extends BaseTestConfig {
 
         assertEquals(loginPage
                         .getLoginErrorMessageText(),
-                "Invalid credentials",
+                "Invalid credentialsssssss",
                 "FAIL: Appropriate error message was not found");
 
         assertNotEquals(getDriver()
