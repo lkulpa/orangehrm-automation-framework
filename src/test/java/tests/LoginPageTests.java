@@ -1,7 +1,14 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.testng.Tag;
+import io.qameta.allure.testng.Tags;
+import io.qameta.allure.Description;
+import io.qameta.allure.SeverityLevel;
+
 import page.LoginPage;
 import page.DashboardPage;
+import utils.PropertiesReader;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
@@ -19,11 +26,15 @@ public class LoginPageTests extends BaseTestConfig {
         dashboardPage = new DashboardPage();
     }
 
-    @Test
+    @Test(testName = "Valid login attempt verification")
+    @Tags({@Tag("regression"), @Tag("functional"), @Tag("authentication"), @Tag("system")})
+    @Description("This test attempts to log into the website using valid login and password of an existing account. Fails if doesn't end up on the Dashboard page after clicking the Login button.")
+    @Severity(SeverityLevel.CRITICAL)
     public void verifyLoginTest() {
+
         loginPage
-                .enterUsernameInput("Admin")
-                .enterPasswordInput("admin123")
+                .enterUsernameInput(PropertiesReader.getProperty("validUsername"))
+                .enterPasswordInput(PropertiesReader.getProperty("validPassword"))
                 .clickLoginButton();
 
         assertTrue(dashboardPage
@@ -32,6 +43,9 @@ public class LoginPageTests extends BaseTestConfig {
     }
 
     @Test
+    @Tags({@Tag("regression"), @Tag("functional"), @Tag("authentication"), @Tag("system")})
+    @Description("This test attempts to log into the website using invalid login and password. Fails if ends up on the Dashboard page or an incorrect error message appears.")
+    @Severity(SeverityLevel.CRITICAL)
     public void invalidLoginTest() {
         loginPage
                 .login("invalidusername", "badpassword123");

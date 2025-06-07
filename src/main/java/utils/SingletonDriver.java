@@ -1,7 +1,6 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SingletonDriver {
 
@@ -9,14 +8,19 @@ public class SingletonDriver {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            driver = new ChromeDriver();
+            driver = BrowserPicker.buildWebDriver();
+            if (Boolean.parseBoolean(PropertiesReader.getProperty("maximizeWindow"))) {
+                driver.manage().window().maximize();
+            }
         }
         return driver;
     }
 
     public static void closeDriver() {
         driver.close();
-        driver.quit();
+        if (!PropertiesReader.getProperty("browserType").equals("firefox")) {
+            driver.quit();
+        }
         driver = null;
     }
 }

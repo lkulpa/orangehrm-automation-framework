@@ -1,5 +1,11 @@
 package tests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.testng.Tag;
+import io.qameta.allure.testng.Tags;
+import io.qameta.allure.Description;
+import io.qameta.allure.SeverityLevel;
+
 import page.LoginPage;
 import page.pim.PimPage;
 import page.NavigationMenuPage;
@@ -8,6 +14,8 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
 import static org.testng.Assert.*;
+import static utils.DataGenerator.generateLastName;
+import static utils.DataGenerator.generateFirstName;
 
 public class PimPageTests extends BaseTestConfig {
 
@@ -17,23 +25,31 @@ public class PimPageTests extends BaseTestConfig {
     private NavigationMenuPage navigationMenuPage;
 
     @BeforeMethod
+    @Description("This method logs in with a valid account and navigates to PIM Page in preparation for PIM Page tests.")
     public void pimPageTestsSetup() {
         loginPage = new LoginPage();
         navigationMenuPage = new NavigationMenuPage();
         pimPage = new PimPage();
         addEmployeePage = new AddEmployeePage();
 
-        loginPage.login("Admin", "admin123");
-        navigationMenuPage.navigateToPimPage();
+        loginPage
+                .login("Admin", "admin123");
+
+        navigationMenuPage
+                .navigateToPimPage();
     }
 
     @Test
+    @Tags({@Tag("regression"), @Tag("functional"), @Tag("essentials"), @Tag("system")})
+    @Description("This test attempts to add a new employee to the database. Fails if the newly added employee cannot be found in the database.")
+    @Severity(SeverityLevel.NORMAL)
     public void addEmployeeTest() {
         pimPage.goToAddEmployeePage();
 
-        String firstName = "trzy";
-        String middleName = "cztery";
-        String lastName = "piec";
+        String firstName = generateFirstName();
+        String middleName = generateFirstName();
+        String lastName = generateLastName();
+
         String employeeId = addEmployeePage.getEmployeeIdValue();
 
         addEmployeePage
