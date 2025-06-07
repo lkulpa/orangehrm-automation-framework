@@ -15,6 +15,6 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         String now = LocalDateTime.now().toString();
         InputStream screenshotIS = takeScreenshot(result.getName() + "Fail" + "_" + now.replace(":", ";"));
-        Allure.addAttachment("fail.png", screenshotIS);
+        Allure.addAttachment("Screenshot", "image/png", screenshotIS, ".png");
     }
 }
