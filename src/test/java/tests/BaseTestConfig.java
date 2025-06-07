@@ -1,10 +1,12 @@
 package tests;
 
 import org.testng.ITestResult;
+import org.testng.annotations.Listeners;
 import utils.PropertiesReader;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import utils.TestListener;
 
 import java.nio.file.Path;
 import java.time.Duration;
@@ -12,6 +14,7 @@ import java.time.Duration;
 import static utils.SingletonDriver.getDriver;
 import static utils.SingletonDriver.closeDriver;
 
+@Listeners({TestListener.class, io.qameta.allure.testng.AllureTestNg.class})
 public class BaseTestConfig {
 
     @BeforeClass

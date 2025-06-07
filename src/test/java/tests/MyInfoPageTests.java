@@ -8,17 +8,14 @@ import io.qameta.allure.SeverityLevel;
 
 import page.LoginPage;
 import page.MyInfoPage;
-import utils.TestListener;
 import page.NavigationMenuPage;
 import org.testng.annotations.Test;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.BeforeMethod;
 
 import static org.testng.Assert.*;
 import static utils.DataGenerator.generateLastName;
 import static utils.DataGenerator.generateFirstName;
 
-@Listeners(TestListener.class)
 public class MyInfoPageTests extends BaseTestConfig {
 
     private LoginPage loginPage;
