@@ -14,10 +14,7 @@ public class BrowserPicker {
 
     public static WebDriver buildWebDriver() {
         ArrayList<String> options = new ArrayList<>();
-        String browserType = System.getenv("browserType");
-        if (browserType == null) {
-            browserType = PropertiesReader.getProperty("browserType");
-        }
+        String browserType = PropertiesReader.getProperty("browserType");
 
         if (Boolean.parseBoolean(PropertiesReader.getProperty("headlessMode"))) {
             options.add("--headless=new");

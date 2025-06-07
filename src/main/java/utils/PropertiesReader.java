@@ -22,9 +22,12 @@ public class PropertiesReader {
     }
 
     public static String getProperty(String key) {
-        String value = properties.getProperty(key);
+        String value = System.getenv(key);
         if (value == null) {
-            logger.warning("Requested property key '" + key + "' does not exist or has no value assigned.");
+            value = properties.getProperty(key);
+            if (value == null) {
+                logger.warning("Requested property key '" + key + "' does not exist or has no value assigned.");
+            }
         }
         return value;
     }
