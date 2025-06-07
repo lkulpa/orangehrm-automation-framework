@@ -14,7 +14,7 @@ import java.time.Duration;
 import static utils.SingletonDriver.getDriver;
 import static utils.SingletonDriver.closeDriver;
 
-@Listeners({TestListener.class, io.qameta.allure.testng.AllureTestNg.class})
+@Listeners({io.qameta.allure.testng.AllureTestNg.class, TestListener.class})
 public class BaseTestConfig {
 
     @BeforeClass
