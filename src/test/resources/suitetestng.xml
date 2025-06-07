@@ -2,7 +2,7 @@
 <suite name="MySuite">
     <test name="MyTest">
         <classes>
-            <class name="tests.LoginPageTests"/>
+            <class name="tests.MyInfoPageTests"/>
         </classes>
     </test>
 </suite>

@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.ITestResult;
 import utils.PropertiesReader;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -25,7 +26,7 @@ public class BaseTestConfig {
     }
 
     @AfterMethod
-    public void afterMethod() {
+    public void afterMethod(ITestResult result) {
         closeDriver();
     }
 }

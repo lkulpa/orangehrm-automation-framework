@@ -26,7 +26,7 @@ public class MyInfoPage extends BasePage {
     @FindBy(css = "span.oxd-checkbox-input")
     private WebElement firstCheckBox;
 
-    @FindBy(css = ".--gender-grouped-field span")
+    @FindBy(className = "oxd-radio-input")
     private List<WebElement> genderRadioButtons;
 
     @FindBy(css = "button[type='submit']:nth-child(2)")
