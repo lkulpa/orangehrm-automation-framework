@@ -9,7 +9,7 @@ public class SingletonDriver {
     public static WebDriver getDriver() {
         if (driver == null) {
             driver = BrowserPicker.buildWebDriver();
-            if (Boolean.parseBoolean(PropertiesReader.getProperty("maximizeWindow"))) {
+            if (Boolean.parseBoolean(PropertiesReader.getProperty("maximizeWindow")) && !Boolean.parseBoolean(PropertiesReader.getProperty("headlessMode"))) {
                 driver.manage().window().maximize();
             }
         }
