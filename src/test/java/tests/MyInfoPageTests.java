@@ -43,6 +43,7 @@ public class MyInfoPageTests extends BaseTestConfig {
     public void editPersonalDetailsTest() {
 
         myInfoPage
+                .waitForFormToLoad()
                 .enterFirstNameInput(generateFirstName())
                 .enterMiddleNameInput(generateFirstName())
                 .enterLastNameInput(generateLastName())

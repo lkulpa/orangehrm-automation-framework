@@ -18,7 +18,7 @@ public class BrowserPicker {
 
         if (Boolean.parseBoolean(PropertiesReader.getProperty("headlessMode"))) {
             options.add("--window-size=1920,1200");
-            options.add("--headless=new");
+            options.add("--headless");
         }
 
         switch (browserType) {

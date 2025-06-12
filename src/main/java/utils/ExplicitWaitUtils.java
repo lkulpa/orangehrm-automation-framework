@@ -20,6 +20,10 @@ public class ExplicitWaitUtils {
         return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
+    public static void waitForElementToDisappear(WebElement webElement) {
+        wait.until(ExpectedConditions.invisibilityOf(webElement));
+    }
+
     public static boolean waitForTextToBePresentInElement(WebElement webElement, String text) {
         return wait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
     }

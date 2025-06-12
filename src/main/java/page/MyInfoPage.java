@@ -8,9 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 import java.util.logging.Level;
 
+import static utils.ExplicitWaitUtils.*;
 import static utils.SingletonDriver.getDriver;
 import static utils.TextUtils.clearAndEnterTextInput;
-import static utils.ExplicitWaitUtils.waitForElementToBeClickable;
 
 public class MyInfoPage extends BasePage {
 
@@ -41,13 +41,22 @@ public class MyInfoPage extends BasePage {
     @FindBy(css = "div[role='option'] span")
     private List<WebElement> dropdownSelectOptions;
 
+    @FindBy(className = "oxd-form-loader")
+    private WebElement formLoader;
+
     public MyInfoPage() {
         PageFactory.initElements(getDriver(), this);
     }
 
+    @Step("waiting for the form to load")
+    public MyInfoPage waitForFormToLoad() {
+        waitForElementToDisappear(formLoader);
+        return this;
+    }
+
     @Step("user enters first name: {firstName}")
     public MyInfoPage enterFirstNameInput(String firstName) {
-        clearAndEnterTextInput(waitForElementToBeClickable(firstNameInput), firstName);
+        clearAndEnterTextInput(firstNameInput, firstName);
         logger.log(Level.INFO, "Cleared first name input field and entered first name: {0}", firstName);
         return this;
     }
