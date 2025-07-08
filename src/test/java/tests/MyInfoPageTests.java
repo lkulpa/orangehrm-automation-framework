@@ -30,7 +30,7 @@ public class MyInfoPageTests extends BaseTestConfig {
         navigationMenuPage = new NavigationMenuPage();
 
         loginPage
-                .login("Admin", "admin123");
+                .loginWithAdminAccount();
 
         navigationMenuPage
                 .navigateToMyInfoPage();
@@ -48,7 +48,7 @@ public class MyInfoPageTests extends BaseTestConfig {
                 .enterMiddleNameInput(generateFirstName())
                 .enterLastNameInput(generateLastName())
                 .clickFirstCheckBox()
-                .clickGenderRadioButton(0)
+                .clickGenderRadioButton(1)
                 .selectNationalityDropdownOption("Polish")
                 .clickSavePersonalDetailsButton();
 

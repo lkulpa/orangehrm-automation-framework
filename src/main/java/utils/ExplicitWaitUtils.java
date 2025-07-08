@@ -24,6 +24,10 @@ public class ExplicitWaitUtils {
         wait.until(ExpectedConditions.invisibilityOf(webElement));
     }
 
+    public static void waitForElementToHaveText(WebElement webElement) {
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(webElement, "value"));
+    }
+
     public static boolean waitForTextToBePresentInElement(WebElement webElement, String text) {
         return wait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
     }

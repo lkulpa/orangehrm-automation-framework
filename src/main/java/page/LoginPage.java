@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.logging.Level;
 
 import static utils.SingletonDriver.getDriver;
+import static utils.PropertiesReader.getProperty;
 
 public class LoginPage extends BasePage {
 
@@ -48,9 +49,9 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage login(String username, String password) {
-        enterUsernameInput(username);
-        enterPasswordInput(password);
+    public LoginPage loginWithAdminAccount() {
+        enterUsernameInput(getProperty("validUsername"));
+        enterPasswordInput(getProperty("validPassword"));
         clickLoginButton();
         return this;
     }
