@@ -48,7 +48,9 @@ public class LoginPageTests extends BaseTestConfig {
     @Severity(SeverityLevel.CRITICAL)
     public void invalidLoginTest() {
         loginPage
-                .login("invalidusername", "badpassword123");
+                .enterUsernameInput("invalidusername")
+                .enterPasswordInput("badpassword123")
+                .clickLoginButton();
 
         assertEquals(loginPage
                         .getLoginErrorMessageText(),

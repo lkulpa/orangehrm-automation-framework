@@ -33,7 +33,7 @@ public class PimPageTests extends BaseTestConfig {
         addEmployeePage = new AddEmployeePage();
 
         loginPage
-                .login("Admin", "admin123");
+                .loginWithAdminAccount();
 
         navigationMenuPage
                 .navigateToPimPage();

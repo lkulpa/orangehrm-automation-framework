@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 import static utils.ExplicitWaitUtils.*;
@@ -36,10 +37,10 @@ public class MyInfoPage extends BasePage {
     private WebElement toastMessageTitle;
 
     @FindBy(css = "div.oxd-select-text")
-    private WebElement nationalityDropdownSelect;
+    private WebElement nationalityDropdownMenu;
 
     @FindBy(css = "div[role='option'] span")
-    private List<WebElement> dropdownSelectOptions;
+    private List<WebElement> nationalityDropdownMenuOptions;
 
     @FindBy(className = "oxd-form-loader")
     private WebElement formLoader;
@@ -51,6 +52,7 @@ public class MyInfoPage extends BasePage {
     @Step("waiting for the form to load")
     public MyInfoPage waitForFormToLoad() {
         waitForElementToDisappear(formLoader);
+        logger.log(Level.INFO, "Waited for the form to load");
         return this;
     }
 
@@ -84,12 +86,12 @@ public class MyInfoPage extends BasePage {
 
     @Step("user clicks gender radio button #{choiceNumber}")
     public MyInfoPage clickGenderRadioButton(int choiceNumber) {
-        waitForElementToBeClickable(genderRadioButtons.get(choiceNumber)).click();
+        waitForElementToBeClickable(genderRadioButtons.get(choiceNumber - 1)).click();
         logger.log(Level.INFO, "Clicked gender radio button #{0}", choiceNumber);
         return this;
     }
 
-    @Step("user click save button on the Personal Details form")
+    @Step("user clicks save button on the Personal Details form")
     public MyInfoPage clickSavePersonalDetailsButton() {
         personalDetailsSaveButton.click();
         logger.log(Level.INFO, "Clicked Personal Details save button");
@@ -98,10 +100,10 @@ public class MyInfoPage extends BasePage {
 
     @Step("user selects nationality from the dropdown menu: {nationality}")
     public MyInfoPage selectNationalityDropdownOption(String nationality) {
-        nationalityDropdownSelect.click();
+        nationalityDropdownMenu.click();
         logger.log(Level.INFO, "Clicked nationality dropdown menu to show available options");
-        for (int i = 0; i < dropdownSelectOptions.size() - 1; i++) {
-            WebElement nationalityDropdownOption = dropdownSelectOptions.get(i);
+        for (int i = 0; i < nationalityDropdownMenuOptions.size() - 1; i++) {
+            WebElement nationalityDropdownOption = nationalityDropdownMenuOptions.get(i);
             String nationalityOptionText = nationalityDropdownOption.getText().toLowerCase();
             if (nationalityOptionText.equals(nationality.toLowerCase())) {
                 nationalityDropdownOption.click();
@@ -115,5 +117,24 @@ public class MyInfoPage extends BasePage {
     @Step("retrieving title text from a Toast popup")
     public String getToastMessageTitleText() {
         return toastMessageTitle.getText();
+    }
+
+
+    @Step("retrieving employee first name from My Info page")
+    public String getEmployeeFirstName() {
+        waitForElementToHaveText(firstNameInput);
+        return Objects.requireNonNull(firstNameInput.getDomProperty("value")).trim();
+    }
+
+    @Step("retrieving employee middle name from My Info page")
+    public String getEmployeeMiddleName() {
+        waitForElementToHaveText(middleNameInput);
+        return Objects.requireNonNull(middleNameInput.getDomProperty("value")).trim();
+    }
+
+    @Step("retrieving employee last name from My Info page")
+    public String getEmployeeLastName() {
+        waitForElementToHaveText(lastNameInput);
+        return Objects.requireNonNull(lastNameInput.getDomProperty("value")).trim();
     }
 }

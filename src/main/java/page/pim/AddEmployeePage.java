@@ -36,7 +36,7 @@ public class AddEmployeePage extends BasePage {
         PageFactory.initElements(getDriver(), this);
     }
 
-    @Step("user enter first name: {firstName}")
+    @Step("user enters first name: {firstName}")
     public AddEmployeePage enterFirstNameInput(String firstName) {
         clearAndEnterTextInput(firstNameInput, firstName);
         logger.log(Level.INFO, "Cleared first name input field and entered first name: {0}", firstName);
@@ -57,7 +57,7 @@ public class AddEmployeePage extends BasePage {
         return this;
     }
 
-    @Step("user click the Save button")
+    @Step("user clicks the Save button")
     public AddEmployeePage clickSaveButton() {
         saveButton.click();
         logger.log(Level.INFO, "Clicked the save button");
